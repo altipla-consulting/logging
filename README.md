@@ -1,5 +1,6 @@
 
 ## logging
+
 JSON logger with an opinionated default configuration.
 
 
@@ -12,7 +13,7 @@ npm install @altipla/logging
 
 ## Usage
 
-```js
+```ts
 import { logger } from '@altipla/logging'
 
 logger.info('Log this')
