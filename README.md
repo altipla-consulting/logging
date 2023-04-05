@@ -1,15 +1,25 @@
-# logging
+
+## logging
 JSON logger with an opinionated default configuration.
 
-# Install
+
+## Install
 
 ```sh
 npm install @altipla/logging
 ```
 
-# Usage
+
+## Usage
 
 ```js
 import { logger } from '@altipla/logging'
-log.info('The logger works!')
+
+logger.info('Log this')
+logger.error('Log an error')
+logger.info({
+  msg: 'foo',
+  field1: 'bar',
+  field2: 3,
+})
 ```
