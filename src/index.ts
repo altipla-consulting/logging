@@ -1,5 +1,5 @@
 
-import log, { type LoggerOptions } from 'pino'
+import pino, { type LoggerOptions } from 'pino'
 
 
 let cnf: LoggerOptions = {}
@@ -19,4 +19,4 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-export let logger = log(cnf)
+export let logger = pino(cnf)
