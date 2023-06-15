@@ -11,9 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
       singleLine: true,
     },
   }
+  cnf.level = 'debug'
 }
-let logger = log(cnf)
-if (process.env.NODE_ENV !== 'production') {
-  logger.level = 'debug'
-}
-export { logger }
+
+export let logger = log(cnf)
