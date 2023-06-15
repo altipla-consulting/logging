@@ -40,7 +40,7 @@ userLogger.error('other message')
 
 ### Changing the log level
 
-By default the log level is `debug`. You can change it by passing a `level` field to a new child logger.
+By default the log level is `debug`. It can be changed creating a new child logger with a `level` field configured:
 
 ```ts
 import { logger } from '@altipla/logging'
