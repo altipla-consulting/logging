@@ -24,3 +24,23 @@ logger.info({
   field2: 3,
 })
 ```
+
+### Logging common fields
+
+```ts
+import { logger } from '@altipla/logging'
+
+let fooLogger = logger.child({ foo: 'foo value' })
+
+fooLogger.info('my message')
+fooLogger.error('other message')
+```
+
+### Changing the log level
+
+```ts
+import { logger } from '@altipla/logging'
+
+let traceLogger = logger.child({ level: 'trace' })
+traceLogger.trace('trace message')
+```
