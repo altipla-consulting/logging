@@ -12,6 +12,11 @@ if (process.env.NODE_ENV !== 'production') {
     },
   }
   cnf.level = 'debug'
+  if (process.env.VITEST) {
+    cnf.browser = {
+      asObject: true,
+    }
+  }
 }
 
 export let logger = log(cnf)
