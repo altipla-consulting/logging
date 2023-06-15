@@ -12,4 +12,8 @@ if (process.env.NODE_ENV !== 'production') {
     },
   }
 }
-export let logger = log(cnf)
+let logger = log(cnf)
+if (process.env.NODE_ENV !== 'production') {
+  logger.level = 'debug'
+}
+export { logger }
