@@ -24,3 +24,27 @@ logger.info({
   field2: 3,
 })
 ```
+
+### Log common fields
+
+Create a custom logger to group fields common to all log messages. It can be useful for example to add the current user inside all messages.
+
+```ts
+import { logger } from '@altipla/logging'
+
+let userLogger = logger.child({ user: 'user' })
+
+userLogger.info('my message')
+userLogger.error('other message')
+```
+
+### Change the log level
+
+By default the log level is `debug`. It can be changed creating a new child logger with a `level` field configured:
+
+```ts
+import { logger } from '@altipla/logging'
+
+let traceLogger = logger.child({ level: 'trace' })
+traceLogger.trace('trace message')
+```
