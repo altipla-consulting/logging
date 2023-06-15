@@ -27,7 +27,7 @@ logger.info({
 
 ### Log common fields
 
-This allows adding common fields to all log messages. It can be useful, for example, to add the current user to all log messages.
+Create a custom logger to group fields common to all log messages. It can be useful for example to add the current user inside all messages.
 
 ```ts
 import { logger } from '@altipla/logging'
