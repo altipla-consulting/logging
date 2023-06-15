@@ -25,7 +25,7 @@ logger.info({
 })
 ```
 
-### Logging common fields
+### Log common fields
 
 This allows adding common fields to all log messages. It can be useful, for example, to add the current user to all log messages.
 
