@@ -27,16 +27,20 @@ logger.info({
 
 ### Logging common fields
 
+This allows adding common fields to all log messages. It can be useful, for example, to add the current user to all log messages.
+
 ```ts
 import { logger } from '@altipla/logging'
 
-let fooLogger = logger.child({ foo: 'foo value' })
+let userLogger = logger.child({ user: 'user' })
 
-fooLogger.info('my message')
-fooLogger.error('other message')
+userLogger.info('my message')
+userLogger.error('other message')
 ```
 
 ### Changing the log level
+
+By default the log level is `debug`. You can change it by passing a `level` field to a new child logger.
 
 ```ts
 import { logger } from '@altipla/logging'
