@@ -38,7 +38,7 @@ userLogger.info('my message')
 userLogger.error('other message')
 ```
 
-### Changing the log level
+### Change the log level
 
 By default the log level is `debug`. It can be changed creating a new child logger with a `level` field configured:
 
