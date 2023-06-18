@@ -1,19 +1,31 @@
 
-import pino, { type LoggerOptions } from 'pino'
+import pino, { type Logger, type LoggerOptions } from 'pino'
 
 
-let cnf: LoggerOptions = {}
+let logger: Logger<LoggerOptions>
 if (process.env.NODE_ENV !== 'production') {
-  cnf.level = 'debug'
-  if (!process.env.VITEST) {
-    cnf.transport = {
-      target: 'pino-pretty',
-      options: {
-        colorize: true,
-        singleLine: true,
+  if (process.env.VITEST) {
+    let browser = await import('pino/browser')
+    logger = browser.default({
+      browser: {
+        asObject: true,
       },
-    }
+      level: 'debug',
+    })
+  } else {
+    logger = pino({
+      level: 'debug',
+      transport: {
+        target: 'pino-pretty',
+        options: {
+          colorize: true,
+          singleLine: true,
+        },
+      },
+    })
   }
+} else {
+  logger = pino()
 }
 
-export let logger = pino(cnf)
+export { logger }
