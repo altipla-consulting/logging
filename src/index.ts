@@ -5,7 +5,7 @@ import pino, { type Logger, type LoggerOptions } from 'pino'
 let logger: Logger<LoggerOptions>
 if (process.env.NODE_ENV !== 'production') {
   if (process.env.VITEST) {
-    let browser = await import('pino/browser')
+    let browser = await import('pino/browser.js')
     logger = browser.default({
       browser: {
         asObject: true,

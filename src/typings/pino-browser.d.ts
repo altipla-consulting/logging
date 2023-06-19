@@ -1,2 +1,2 @@
 
-declare module 'pino/browser'
+declare module 'pino/browser.js'
