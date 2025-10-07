@@ -1,9 +1,9 @@
 
 build:
-	npm ci
+	@pnpm install
 
 lint:
-	npm run lint
+	@pnpm lint
 
 test:
-	npm run test
+	@pnpm test

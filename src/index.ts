@@ -1,33 +1,39 @@
+import pino, { type Logger } from 'pino'
 
-import pino, { type Logger, type LoggerOptions } from 'pino'
+let logger: Logger<string>
 
-
-let logger: Logger<LoggerOptions>
-if (process.env.NODE_ENV !== 'production') {
-  if (process.env.VITEST) {
-    (async function() {
-      let browser = await import('pino/browser.js')
-      logger = browser.default({
-        browser: {
-          asObject: true,
-        },
-        level: 'debug',
+async function $resetupLogger() {
+  if (process.env.NODE_ENV !== 'production') {
+    if (process.env.VITEST) {
+      const { prettyFactory } = await import('pino-pretty')
+      const pretty = prettyFactory({
+        colorize: true,
+        singleLine: true,
       })
-    })()
-  } else {
-    logger = pino({
-      level: 'debug',
-      transport: {
-        target: 'pino-pretty',
-        options: {
-          colorize: true,
-          singleLine: true,
+      logger = pino(
+        { level: 'debug' },
+        {
+          write(msg) {
+            console.log(pretty(msg).trim())
+          },
+        }
+      )
+    } else {
+      logger = pino({
+        level: 'debug',
+        transport: {
+          target: 'pino-pretty',
+          options: {
+            colorize: true,
+            singleLine: true,
+          },
         },
-      },
-    })
+      })
+    }
+  } else {
+    logger = pino()
   }
-} else {
-  logger = pino()
 }
+await $resetupLogger()
 
-export { logger }
+export { logger, $resetupLogger }

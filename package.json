@@ -4,9 +4,10 @@
   "type": "module",
   "description": "JSON logger with an opinionated default configuration.",
   "scripts": {
-    "lib": "tsc --declaration --esModuleInterop --outDir dist",
-    "lint": "tsc --noEmit && eslint --ext .ts src",
+    "build": "tsdown src/index.ts",
+    "lint": "tsc --noEmit && eslint src",
     "fix": "eslint --fix --ext .ts src",
+    "prepublishOnly": "pnpm build",
     "test": "vitest run",
     "watch": "vitest watch"
   },
@@ -28,13 +29,17 @@
   ],
   "main": "dist/index.js",
   "devDependencies": {
-    "@altipla/eslint-config-ts": "^0.6.0",
-    "@types/node": "^18.15.11",
-    "typescript": "^5.0.3",
-    "vitest": "^0.32.0"
+    "@altipla/eslint-config-ts": "^1.0.5",
+    "@types/node": "^24.7.0",
+    "tsdown": "^0.15.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
   },
   "dependencies": {
-    "pino": "^8.11.0",
-    "pino-pretty": "^10.0.0"
+    "pino": "^10.0.0",
+    "pino-pretty": "^13.1.1"
+  },
+  "pnpm": {
+    "neverBuiltDependencies": []
   }
 }

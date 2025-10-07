@@ -1,6 +1,4 @@
-
 import { logger } from './index'
-
 
 export async function foo() {
   await new Promise((resolve) => setTimeout(resolve, 1000))
