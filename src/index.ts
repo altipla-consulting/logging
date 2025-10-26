@@ -24,7 +24,7 @@ async function $resetupLogger() {
         transport: {
           target: 'pino-pretty',
           options: {
-            colorize: true,
+            colorize: !process.env.CI,
             singleLine: true,
           },
         },
