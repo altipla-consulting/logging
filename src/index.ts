@@ -7,7 +7,7 @@ async function $resetupLogger() {
     if (process.env.VITEST) {
       const { prettyFactory } = await import('pino-pretty')
       const pretty = prettyFactory({
-        colorize: true,
+        colorize: !process.env.CI,
         singleLine: true,
       })
       logger = pino(
