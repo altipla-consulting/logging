@@ -1,6 +1,6 @@
 {
   "name": "@altipla/logging",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "description": "JSON logger with an opinionated default configuration.",
   "scripts": {
