@@ -2,38 +2,29 @@ import pino, { type Logger } from 'pino'
 
 let logger: Logger<string>
 
-async function $resetupLogger() {
-  if (process.env.NODE_ENV !== 'production') {
-    if (process.env.VITEST) {
-      const { prettyFactory } = await import('pino-pretty')
-      const pretty = prettyFactory({
-        colorize: !process.env.CI,
+if (process.env.NODE_ENV === 'production') {
+  logger = pino()
+} else if (process.env.NODE_ENV === 'test') {
+  logger = pino({
+    level: 'debug',
+    hooks: {
+      streamWrite(s) {
+        console.log(s.trim())
+        return ''
+      },
+    },
+  })
+} else {
+  logger = pino({
+    level: 'debug',
+    transport: {
+      target: 'pino-pretty',
+      options: {
+        colorize: true,
         singleLine: true,
-      })
-      logger = pino(
-        { level: 'debug' },
-        {
-          write(msg) {
-            console.log(pretty(msg).trim())
-          },
-        }
-      )
-    } else {
-      logger = pino({
-        level: 'debug',
-        transport: {
-          target: 'pino-pretty',
-          options: {
-            colorize: !process.env.CI,
-            singleLine: true,
-          },
-        },
-      })
-    }
-  } else {
-    logger = pino()
-  }
+      },
+    },
+  })
 }
-await $resetupLogger()
 
-export { logger, $resetupLogger }
+export { logger }
